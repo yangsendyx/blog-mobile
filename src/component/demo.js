@@ -2,6 +2,7 @@
 import React from 'react';
 import { AjaxGet, timmFormat } from '../util.js';
 import option from '../option';
+import Footer from './footer';
 
 let Demo = React.createClass({
 	componentDidMount() {
@@ -30,15 +31,19 @@ let Demo = React.createClass({
 
 		return (
 			<div className="sec sec-demo" style={ style }>
-				<div className="box">
-					{
-						data.map((el, i) => {
-							return <Item key={ i } data={ el }></Item>;
-						})
-					}
-				</div>
+				<div className="contains">
+					<div className="box">
+						{
+							data.map((el, i) => {
+								return <Item key={ i } data={ el }></Item>;
+							})
+						}
+					</div>
 
-				{ this.props.data.demo.length == data.length ? '' : nextBtn }
+					{ this.props.data.demo.length == data.length ? '' : nextBtn }
+				</div>
+				
+				<Footer></Footer>
 			</div>
 		);
 	}

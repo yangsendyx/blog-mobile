@@ -53,7 +53,7 @@ let App = React.createClass ({
 	                    })
                     }
                 </ReactCSSTransitionGroup>
-                <Footer></Footer>
+                {/*<Footer></Footer>*/}
             </div>
         );
     }

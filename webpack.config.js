@@ -54,7 +54,7 @@ module.exports = {
 	devServer: {
 		proxy: {
 		  	'*':{
-			    target: 'http://localhost',
+			    target: 'http://yshome.net.cn',
 			    secure: false
 	 		}
 		},

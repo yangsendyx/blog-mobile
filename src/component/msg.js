@@ -3,6 +3,8 @@ import React from 'react';
 import { AjaxGet, timmFormat, AjaxPost } from '../util.js';
 import option from '../option';
 
+import Footer from './footer';
+
 let Msg = React.createClass({
 	getInitialState() {
 		return { id: '', to: '' };
@@ -76,28 +78,32 @@ let Msg = React.createClass({
 		
 		return (
 			<div className="sec sec-msg" style={ style } ref="wrap">
-				<div className="box">
-					{
-						data.map((el, i) => {
-							return <Item key={ i } data={ el } comment={ this.changeComment }></Item>;
-						})
-					}
-				</div>
-				<div className="page-btn-wrap">
-					{
-						pagingData.map((el, i) => {
-							return <PageBtn key={ i } data={ el } pageFn={ this.pageTurn }></PageBtn>;
-						})
-					}
-				</div>
-				<div className="input">
-					<textarea ref="input"></textarea>
-					<div className="btn-wrap">
-						{ this.state.id ? <span className="comment-text">回复 { this.state.to }</span> : '' }
-						<span className="button" onClick={ this.submitComment }>提交</span>
-						{ this.state.id ? <span className="button" onClick={ this.cancelComment }>取消回复</span> : '' }
+				<div className="contains">
+					<div className="box">
+						{
+							data.map((el, i) => {
+								return <Item key={ i } data={ el } comment={ this.changeComment }></Item>;
+							})
+						}
+					</div>
+					<div className="page-btn-wrap">
+						{
+							pagingData.map((el, i) => {
+								return <PageBtn key={ i } data={ el } pageFn={ this.pageTurn }></PageBtn>;
+							})
+						}
+					</div>
+					<div className="input">
+						<textarea ref="input"></textarea>
+						<div className="btn-wrap">
+							{ this.state.id ? <span className="comment-text">回复 { this.state.to }</span> : '' }
+							<span className="button" onClick={ this.submitComment }>提交</span>
+							{ this.state.id ? <span className="button" onClick={ this.cancelComment }>取消回复</span> : '' }
+						</div>
 					</div>
 				</div>
+					
+				<Footer></Footer>
 			</div>
 		);
 	}
