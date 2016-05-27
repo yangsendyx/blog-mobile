@@ -5,7 +5,7 @@ import option from '../option';
 
 let Err = React.createClass({
 	getInitialState() {
-		return { timeoutFn: {} };
+		return { timeoutFn: {}, timeoutFn2: {} };
 	},
 
 	render() {
@@ -13,7 +13,8 @@ let Err = React.createClass({
 		let className = show ? 'error show-middle' : 'error';
 		
 		if( !show ) {
-			setTimeout(() => {
+			clearTimeout( this.state.timeoutFn2 );
+			this.state.timeoutFn2 = setTimeout(() => {
 				this.refs.error.className = 'error hide';
 			}, option.hideAnimateTime);
 		} else {
@@ -21,6 +22,7 @@ let Err = React.createClass({
 				this.refs.error.className = 'error show';
 			}, 10);
 			clearTimeout( this.state.timeoutFn );
+			clearTimeout( this.state.timeoutFn2 );
 			this.state.timeoutFn = setTimeout(() => {
 				this.props.actions.statusErrorShow( false );
 			}, option.hideCallBackTime);

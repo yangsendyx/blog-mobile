@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { AjaxGet } from '../util.js';
 
 let Blog = React.createClass({
 	render() {

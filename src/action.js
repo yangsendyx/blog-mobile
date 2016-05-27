@@ -1,33 +1,33 @@
 
 export const action = {
 	blog: {
-		PAGE_TURN: 'PAGE_TURN',
-		FILTER_TAG: 'FILTER_TAG',
-		INIT_DATA: 'INIT_DATA'
+		PAGE_TURN: 'BLOG_PAGE_TURN',
+		FILTER_TAG: 'BLOG_FILTER_TAG',
+		INIT_DATA: 'BLOG_INIT_DATA'
 	},
 	note: {
-		INIT_DATA: 'INIT_DATA',
-		NEW_COMMENT: 'NEW_COMMENT'
+		INIT_DATA: 'NOTE_INIT_DATA',
+		NEW_COMMENT: 'NOTE_NEW_COMMENT'
 	},
 	demo: {
-		INIT_DATA: 'INIT_DATA',
-		PAGE_TURN: 'PAGE_TURN'
+		INIT_DATA: 'DEMO_INIT_DATA',
+		PAGE_TURN: 'DEMO_PAGE_TURN'
 	},
 	msg: {
-		INIT_DATA: 'INIT_DATA',
-		PAGE_TURN: 'PAGE_TURN'
+		INIT_DATA: 'MSG_INIT_DATA',
+		PAGE_TURN: 'MSG_PAGE_TURN'
 	},
 	status: {
-		SHOW_INFO: 'SHOW_INFO',
-		UPDATE_INFO: 'UPDATE_INFO',
-		ERROR_SHOW: 'ERROR_SHOW',
-		DIALOG_SHOW: 'DIALOG_SHOW'
+		SHOW_INFO: 'STATUS_SHOW_INFO',
+		UPDATE_INFO: 'STATUS_UPDATE_INFO',
+		ERROR_SHOW: 'STATUS_ERROR_SHOW',
+		DIALOG_SHOW: 'STATUS_DIALOG_SHOW'
 	},
 	ui: {
-		SHOW_LOADING: 'SHOW_LOADING',
-		SHOW_NAV: 'SHOW_NAV',
-		SHOW_TAG: 'SHOW_TAG',
-		CHANGE_BGD: 'CHANGE_BGD'
+		SHOW_LOADING: 'UI_SHOW_LOADING',
+		SHOW_NAV: 'UI_SHOW_NAV',
+		SHOW_TAG: 'UI_SHOW_TAG',
+		CHANGE_BGD: 'UI_CHANGE_BGD'
 	}
 };
 
@@ -77,9 +77,9 @@ export function demoInitData(len, data) {
 		length: len,
 		data: data
 	};
-	}
+}
 
-export function demoPageTurn(len, data) {
+export function demoPageTurn(data) {
 	return {
 		type: action.demo.PAGE_TURN,
 		data: data
@@ -94,10 +94,12 @@ export function msgInitData(len, data) {
 	};
 }
 
-export function msgPageTurn(data) {
+export function msgPageTurn(data, page, length) {
 	return {
 		type: action.msg.PAGE_TURN,
-		data: data
+		data: data,
+		page: page,
+		length: length
 	};
 }
 

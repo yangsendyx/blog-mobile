@@ -52,12 +52,12 @@ module.exports = {
 		extensions: ['', '.js', '.css', '.jsx', '.less', 'json']
 	},
 	devServer: {
-		/*proxy: {
+		proxy: {
 		  	'*':{
-			    target: 'http://yshome.net.cn',
+			    target: 'http://localhost',
 			    secure: false
 	 		}
-		},*/
+		},
 		host: '0.0.0.0',
 		port: 3000,
 		hot: true,

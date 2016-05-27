@@ -19,10 +19,14 @@ let initState = {
   	},
   	demo: {
   		length: 0,
+  		page: 0,
+  		pageLen: 9,
   		data: []
   	},
   	msg: {
   		length: 0,
+  		page: 0,
+  		pageLen: 6,
   		data: []
   	},
   	status: {
@@ -45,7 +49,7 @@ let initState = {
   		showLoading: false,
   		showNav: false,
   		showTag: false,
-  		bgd: ['f6ada6', 'd5f6a6', 'a6f6ee', 'a6bef6', 'c19ceb', 'eb9cbf', '9ceba1', '9cb6eb', 'eaeb9c', '9cebe4', 'e39ceb', 'a99ceb', '9ceb9e', 'ebd99c', 'eb9ca1', 'b4eb9c']
+  		bgd: ['baf3da', 'baf3ea', 'bae8f3', 'bad1f3', 'babbf3', 'cebaf3', 'e2baf3', 'f3baed', 'f3bacf', 'f3baba', 'f3ceba', 'f3edba', 'ddf3ba', 'c1f3ba', 'baf3cb', 'baf3e6']
   	}
 };
 // 这里修正 initState 中用户本地存储的信息
@@ -116,12 +120,14 @@ let demoReducer = (state=initState.demo, action) => {
 		case Actions.demo.INIT_DATA:
 		return Object.assign({}, state, {
 			length: action.length,
-			data: action.data
+			data: action.data,
+			page: 1
 		});
 
 		case Actions.demo.PAGE_TURN:
 		return Object.assign({}, state, {
-			data: state.data.concat( action.data )
+			data: state.data.concat( action.data ),
+			page: state.page + 1
 		});
 
 		default:
@@ -134,12 +140,15 @@ let msgReducer = (state=initState.msg, action) => {
 		case Actions.msg.INIT_DATA:
 		return Object.assign({}, state, {
 			length: action.length,
-			data: action.data
+			data: action.data,
+			page: 1
 		});
 
 		case Actions.msg.PAGE_TURN:
 		return Object.assign({}, state, {
-			data: state.data.concat( action.data )
+			data: action.data,
+			page: action.page,
+			length: action.length
 		});
 
 		default:

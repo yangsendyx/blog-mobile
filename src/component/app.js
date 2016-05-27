@@ -37,7 +37,7 @@ let App = React.createClass ({
             <div>
             	<Nav actions={ actions } ui={ ui } length={ blog.category.data.length } ></Nav>
             	<Loading ui={ ui }></Loading>
-            	<Err status={ status }></Err>
+            	<Err status={ status } actions={ actions }></Err>
             	<Info status={ status } actions={ actions }></Info>
             	<Dialog status={ status } actions={ actions }></Dialog>
                 <ReactCSSTransitionGroup
