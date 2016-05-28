@@ -32,6 +32,7 @@ render(
 			<Route path="/" component={ App }>
 	            <IndexRoute component={ Blog }></IndexRoute>
 	            <Route path="blog" component={ Blog } ></Route>
+	            <Route path="blog/:id" component={ Note } ></Route>
 	            <Route path="demo" component={ Demo } ></Route>
 	            <Route path="msg" component={ Msg } ></Route>
 	            <Route path="about" component={ About } ></Route>

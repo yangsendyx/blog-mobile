@@ -1,16 +1,25 @@
 
 import React from 'react';
+import option from '../option';
 
 let Loading = React.createClass({
+	getInitialState() {
+		return { timeout: {}, timeoutFn: {} };
+	},
+
 	render() {
-		var show = this.props.ui.showLoading;
-		var className = show ? 'loading show-middle' : 'loading';
+		let show = this.props.ui.showLoading;
+		let className = show ? 'loading show-middle' : 'loading';
 		if( !show ) {
-			setTimeout(() => {
+			clearTimeout( this.state.timeout );
+			clearTimeout( this.state.timeoutFn );
+			this.state.timeout = setTimeout(() => {
 				this.refs.loading.className = 'loading hide';
-			}, 600);
+			}, option.hideAnimateTime-200);
 		} else {
-			setTimeout(() => {
+			clearTimeout( this.state.timeout );
+			clearTimeout( this.state.timeoutFn );
+			this.state.timeoutFn = setTimeout(() => {
 				this.refs.loading.className = 'loading show';
 			}, 10);
 		}

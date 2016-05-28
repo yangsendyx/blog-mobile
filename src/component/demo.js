@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { AjaxGet, timmFormat } from '../util.js';
+import { AjaxGet, timeFormat } from '../util.js';
 import option from '../option';
 import Footer from './footer';
 

@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import * as todoAction from '../action';
 
 import Nav from './nav';
-import Footer from './footer';
 import Loading from './loading';
 import Err from './error';
 import Info from './info';
@@ -35,7 +34,7 @@ let App = React.createClass ({
 
         return (
             <div>
-            	<Nav actions={ actions } ui={ ui } length={ blog.category.data.length } ></Nav>
+            	<Nav actions={ actions } ui={ ui } blog={ blog } length={ blog.category.data.length } ></Nav>
             	<Loading ui={ ui }></Loading>
             	<Err status={ status } actions={ actions }></Err>
             	<Info status={ status } actions={ actions }></Info>
@@ -53,7 +52,6 @@ let App = React.createClass ({
 	                    })
                     }
                 </ReactCSSTransitionGroup>
-                {/*<Footer></Footer>*/}
             </div>
         );
     }

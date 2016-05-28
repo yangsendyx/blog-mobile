@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { AjaxGet, timmFormat, AjaxPost } from '../util.js';
+import { AjaxGet, timeFormat, AjaxPost } from '../util.js';
 import option from '../option';
 
 import Footer from './footer';
@@ -79,7 +79,7 @@ let Msg = React.createClass({
 		return (
 			<div className="sec sec-msg" style={ style } ref="wrap">
 				<div className="contains">
-					<div className="box">
+					<div className="comment-box">
 						{
 							data.map((el, i) => {
 								return <Item key={ i } data={ el } comment={ this.changeComment }></Item>;
@@ -93,14 +93,16 @@ let Msg = React.createClass({
 							})
 						}
 					</div>
-					<div className="input">
+					{
+						data.length ? (<div className="comment-input">
 						<textarea ref="input"></textarea>
 						<div className="btn-wrap">
 							{ this.state.id ? <span className="comment-text">回复 { this.state.to }</span> : '' }
 							<span className="button" onClick={ this.submitComment }>提交</span>
 							{ this.state.id ? <span className="button" onClick={ this.cancelComment }>取消回复</span> : '' }
 						</div>
-					</div>
+					</div>) : ''
+					}
 				</div>
 					
 				<Footer></Footer>
@@ -128,7 +130,7 @@ let Item = React.createClass({
 				<div className="info-wrap">
 					<div className="title">
 						<span className="name">{ data.from }</span>
-						<span className="time">[{ timmFormat(data.time, 'YY/MM/DD HH:mm') }]</span>
+						<span className="time">[{ timeFormat(data.time, 'YY/MM/DD HH:mm') }]</span>
 						<span className="comment" onClick={ ()=>this.props.comment(data.from, data.id) }>回复</span>
 					</div>
 					<div className="body">{ data.msg }</div>
@@ -155,7 +157,7 @@ let Reply = React.createClass({
 				<div className="info-wrap">
 					<div className="title">
 						<span className="name">{ data.from } 回复 { data.to }</span>
-						<span className="time">[{ timmFormat(data.time, 'YY/MM/DD HH:mm') }]</span>
+						<span className="time">[{ timeFormat(data.time, 'YY/MM/DD HH:mm') }]</span>
 						<span className="comment" onClick={ ()=>this.props.comment(data.from, this.props.id) }>回复</span>
 					</div>
 					<div className="body">{ data.msg }</div>

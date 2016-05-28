@@ -3,7 +3,8 @@ export const action = {
 	blog: {
 		PAGE_TURN: 'BLOG_PAGE_TURN',
 		FILTER_TAG: 'BLOG_FILTER_TAG',
-		INIT_DATA: 'BLOG_INIT_DATA'
+		INIT_DATA: 'BLOG_INIT_DATA',
+		FILTER_SHOW: 'BLOG_FILTER_SHOW'
 	},
 	note: {
 		INIT_DATA: 'NOTE_INIT_DATA',
@@ -31,28 +32,36 @@ export const action = {
 	}
 };
 
-export function blogPageTurn(data, len) {
+export function blogPageTurn(listData, listLen) {
 	return {
 		type: action.blog.PAGE_TURN,
-		data: data,
-		length: len
+		listData: listData,
+		listLen: listLen
 	};
 }
 
-export function blogFilterTag(cur, data, len) {
+export function blogFilterTag(choiceId, listData, listLen) {
 	return {
 		type: action.blog.FILTER_TAG,
-		data: data,
-		length: len,
-		current: cur
+		choiceId: choiceId,
+		listData: listData,
+		listLen: listLen
 	};
 }
 
-export function blogInitData(category, list) {
+export function blogFilterShow(state) {
+	return {
+		type: action.blog.FILTER_SHOW,
+		show: state
+	};
+}
+
+export function blogInitData(categoryData, listData, listLen) {
 	return {
 		type: action.blog.INIT_DATA,
-		category: category,
-		list: list
+		categoryData: categoryData,
+		listData: listData,
+		listLen: listLen
 	};
 }
 

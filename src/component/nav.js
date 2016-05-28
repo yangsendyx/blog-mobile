@@ -8,7 +8,7 @@ let Nav = React.createClass({
 	},
 
 	showTag() {
-		
+		this.props.actions.blogFilterShow( !this.props.blog.category.show );
 	},
 
 	showMenu() {

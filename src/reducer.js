@@ -5,17 +5,20 @@ import { action as Actions } from './action';
 let initState = {
   	blog: {
   		category: {
-  			current: 'all',
+  			show: false,
+  			type: 'all',
   			data: []
   		},
   		list: {
   			length: 0,
+  			page: 0,
+  			pageLen: 9,
   			data: []
   		}
   	},
   	note: {
   		comment: [],
-  		article: {}
+  		article: []
   	},
   	demo: {
   		length: 0,
@@ -68,28 +71,55 @@ let blogReducer = (state=initState.blog, action) => {
 	switch(action.type) {
 		case Actions.blog.PAGE_TURN:
 		return Object.assign({}, state, {
-			list: {
-				length: action.length,
-				data: state.list.data.concat( action.data )
-			}
+			list: Object.assign({}, state.list, {
+				length: action.listLen,
+				data: state.list.data.concat( action.listData ),
+				page: state.list.page + 1
+			})
 		});
 
 		case Actions.blog.FILTER_TAG:
 		return Object.assign({}, state, {
-			category: {
-				current: action.current,
-				data: state.category.data
-			},
-			list: {
-				length: action.length,
-				data: action.data
-			}
+			category: Object.assign({}, state.category, {
+				show: false,
+				type: action.choiceId,
+				data: Object.assign([], state.category.data).map((el) => {
+					if( el._id == action.choiceId ) {
+						return Object.assign({}, el, {
+							active: true
+						});
+					} else if( el.active ) {
+						return Object.assign({}, el, {
+							active: false
+						});
+					}
+					return el;
+				})
+			}),
+			list: Object.assign({}, state.list, {
+				length: action.listLen,
+				data: action.listData,
+				page: 1
+			})
 		});
 
 		case Actions.blog.INIT_DATA:
 		return Object.assign({}, state, {
-			category: action.category,
-			list: action.list
+			category: Object.assign({}, state.category, {
+				data: action.categoryData
+			}),
+			list: Object.assign({}, state.list, {
+				length: action.listLen,
+				data: action.listData,
+				page: 1
+			})
+		});
+
+		case Actions.blog.FILTER_SHOW:
+		return Object.assign({}, state, {
+			category: Object.assign({}, state.category, {
+				show: action.show
+			})
 		});
 
 		default:

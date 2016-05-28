@@ -54,7 +54,7 @@ let addZero = (num) => {
 	return num < 10 ? '0' + num : '' + num;
 };
 
-export function timmFormat(time, format) {
+export function timeFormat(time, format) {
 	let dateObj, json = {};
 	if (!time) {
 		dateObj = new Date();
