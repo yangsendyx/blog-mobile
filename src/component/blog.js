@@ -7,6 +7,7 @@ import Footer from './footer';
 
 let Blog = React.createClass({
 	componentDidMount() {
+		this.props.actions.blogInitData( [], [], 0 );
 		let _this = this;
 		let url = '';
 		let data = {};

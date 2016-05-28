@@ -6,6 +6,7 @@ import Footer from './footer';
 
 let Demo = React.createClass({
 	componentDidMount() {
+		this.props.actions.demoInitData(0, []);
 		let _this = this;
 		let url = '/demo/list?start=0';
 		setTimeout(() => {

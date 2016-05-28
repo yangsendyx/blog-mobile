@@ -11,6 +11,7 @@ let Msg = React.createClass({
 	},
 
 	componentDidMount() {
+		this.props.actions.msgInitData(0, []);
 		let _this = this;
 		let url = '/message/list?start=0';
 		setTimeout(() => {
