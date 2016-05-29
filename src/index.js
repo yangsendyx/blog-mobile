@@ -18,10 +18,10 @@ reducers.routing = routerReducer;
 const store = createStore( combineReducers(reducers) );
 const history = syncHistoryWithStore(hashHistory, store);
 
-let unsubscribe = store.subscribe(() => {
+/*let unsubscribe = store.subscribe(() => {
 	let a = store.getState();
-	// console.log( a );
-});
+	console.log( a );
+});*/
 
 let div = document.createElement('div');
 document.body.appendChild( div );

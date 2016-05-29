@@ -5,8 +5,11 @@ import option from '../option';
 import Footer from './footer';
 
 let Demo = React.createClass({
-	componentDidMount() {
+	componentWillMount() {
 		this.props.actions.demoInitData(0, []);
+	},
+
+	componentDidMount() {
 		let _this = this;
 		let url = '/demo/list?start=0';
 		setTimeout(() => {
@@ -29,22 +32,25 @@ let Demo = React.createClass({
 		let style = { backgroundColor: '#'+this.props.data.ui.bgd[1] };
 		let data = this.props.data.demo.data;
 		let nextBtn = <div className="next-btn" onClick={ this.addMore }>加载更多</div>;
+		let isHide = data.length ? false : true;
 
 		return (
 			<div className="sec sec-demo" style={ style }>
-				<div className="contains">
-					<div className="box">
-						{
-							data.map((el, i) => {
-								return <Item key={ i } data={ el }></Item>;
-							})
-						}
-					</div>
+				{
+					isHide ? '' : <div className="contains">
+						<div className="box">
+							{
+								data.map((el, i) => {
+									return <Item key={ i } data={ el }></Item>;
+								})
+							}
+						</div>
 
-					{ this.props.data.demo.length == data.length ? '' : nextBtn }
-				</div>
+						{ this.props.data.demo.length == data.length ? '' : nextBtn }
+					</div>
+				}
 				
-				<Footer></Footer>
+				{ isHide ? '' : <Footer></Footer> }
 			</div>
 		);
 	}

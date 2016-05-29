@@ -10,8 +10,11 @@ let Msg = React.createClass({
 		return { id: '', to: '' };
 	},
 
-	componentDidMount() {
+	componentWillMount() {
 		this.props.actions.msgInitData(0, []);
+	},
+
+	componentDidMount() {
 		let _this = this;
 		let url = '/message/list?start=0';
 		setTimeout(() => {
@@ -76,37 +79,40 @@ let Msg = React.createClass({
 		let data = msg.data;
 		let all = Math.ceil(msg.length / msg.pageLen);
 		let pagingData = makePaging( all, msg.page );
+		let isHide = data.length ? false : true;
 		
 		return (
 			<div className="sec sec-msg" style={ style } ref="wrap">
-				<div className="contains">
-					<div className="comment-box">
-						{
-							data.map((el, i) => {
-								return <Item key={ i } data={ el } comment={ this.changeComment }></Item>;
-							})
-						}
-					</div>
-					<div className="page-btn-wrap">
-						{
-							pagingData.map((el, i) => {
-								return <PageBtn key={ i } data={ el } pageFn={ this.pageTurn }></PageBtn>;
-							})
-						}
-					</div>
-					{
-						data.length ? (<div className="comment-input">
-						<textarea ref="input"></textarea>
-						<div className="btn-wrap">
-							{ this.state.id ? <span className="comment-text">回复 { this.state.to }</span> : '' }
-							<span className="button" onClick={ this.submitComment }>提交</span>
-							{ this.state.id ? <span className="button" onClick={ this.cancelComment }>取消回复</span> : '' }
+				{
+					isHide ? '' : <div className="contains">
+						<div className="comment-box">
+							{
+								data.map((el, i) => {
+									return <Item key={ i } data={ el } comment={ this.changeComment }></Item>;
+								})
+							}
 						</div>
-					</div>) : ''
-					}
-				</div>
+						<div className="page-btn-wrap">
+							{
+								pagingData.map((el, i) => {
+									return <PageBtn key={ i } data={ el } pageFn={ this.pageTurn }></PageBtn>;
+								})
+							}
+						</div>
+						{
+							data.length ? (<div className="comment-input">
+								<textarea ref="input"></textarea>
+								<div className="btn-wrap">
+									{ this.state.id ? <span className="comment-text">回复 { this.state.to }</span> : '' }
+									<span className="button" onClick={ this.submitComment }>提交</span>
+									{ this.state.id ? <span className="button" onClick={ this.cancelComment }>取消回复</span> : '' }
+								</div>
+							</div>) : ''
+						}
+					</div>
+				}
 					
-				<Footer></Footer>
+				{ isHide ? '' : <Footer></Footer> }
 			</div>
 		);
 	}

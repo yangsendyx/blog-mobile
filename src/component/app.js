@@ -5,6 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as todoAction from '../action';
+import option from '../option';
 
 import Nav from './nav';
 import Loading from './loading';
@@ -23,7 +24,11 @@ let App = React.createClass ({
 	componentDidMount() {
 		setInterval(() => {
 			this.state.actions.changeBgd();
-		}, 30000);
+		}, option.bgdChangeTime);
+
+		setTimeout(() => {
+			this.state.actions.uiShowFirst( false );
+		}, 1500);
 	},
 
   	render() {
@@ -34,6 +39,7 @@ let App = React.createClass ({
 
         return (
             <div>
+            	<Default ui={ ui }></Default>
             	<Nav actions={ actions } ui={ ui } blog={ blog } length={ blog.category.data.length } ></Nav>
             	<Loading ui={ ui }></Loading>
             	<Err status={ status } actions={ actions }></Err>

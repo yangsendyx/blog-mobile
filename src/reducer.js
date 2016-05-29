@@ -33,7 +33,6 @@ let initState = {
   		data: []
   	},
   	status: {
-  		first: true,
   		info: {
   			show: false,
   			name: '',
@@ -52,6 +51,7 @@ let initState = {
   		showLoading: false,
   		showNav: false,
   		showTag: false,
+  		showFirst: true,
   		bgd: ['baf3da', 'baf3ea', 'bae8f3', 'bad1f3', 'babbf3', 'cebaf3', 'e2baf3', 'f3baed', 'f3bacf', 'f3baba', 'f3ceba', 'f3edba', 'ddf3ba', 'c1f3ba', 'baf3cb', 'baf3e6']
   	}
 };
@@ -240,6 +240,11 @@ let uiReducer = (state=initState.ui, action) => {
 		case Actions.ui.SHOW_TAG:
 		return Object.assign({}, state, {
 			showTag: action.showTag
+		});
+
+		case Actions.ui.SHOW_FIRST:
+		return Object.assign({}, state, {
+			showFirst: action.showFirst
 		});
 
 		case Actions.ui.CHANGE_BGD:

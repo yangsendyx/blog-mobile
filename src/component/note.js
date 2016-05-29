@@ -9,8 +9,11 @@ let Note = React.createClass({
 		return { id: '', to: '', _id: '' };
 	},
 
-	componentDidMount() {
+	componentWillMount() {
 		this.props.actions.noteInitData( [], [] );
+	},
+
+	componentDidMount() {
 		let id = window.location.hash.split('/blog/')[1].split('?')[0];
 		this.state._id = id;
 		let data = {};
@@ -76,40 +79,41 @@ let Note = React.createClass({
 		});
 	},
 
-	// 55929f077d33786c1edf8078
 	render() {
 		let style = { backgroundColor: '#'+this.props.data.ui.bgd[3] };
 		let article = this.props.data.note.article;
 		let comment = this.props.data.note.comment;
+		let isHide = article.length ? false : true;
 		
 		return (
 			<div className="sec sec-note" style={ style }>
-				<div className="contains">
-					{
-						article.map((el, i) => {
-							return <ArticleItem key={i} data={el}></ArticleItem>;
-						})
-					}
-					{ 
-						comment.length ? (<div className="comment-input">
-							<textarea ref="input"></textarea>
-							<div className="btn-wrap">
-								{ this.state.id ? <span className="comment-text">回复 { this.state.to }</span> : '' }
-								<span className="button" onClick={ this.submitComment }>提交</span>
-								{ this.state.id ? <span className="button" onClick={ this.cancelComment }>取消回复</span> : '' }
-							</div>
-						</div>) : ''
-					}
-					<div className="comment-box">
+				{
+					isHide ? '' : <div className="contains">
 						{
-							comment.map((el, i) => {
-								return <Item key={ i } data={ el } comment={ this.changeComment }></Item>;
+							article.map((el, i) => {
+								return <ArticleItem key={i} data={el}></ArticleItem>;
 							})
 						}
+						{ 
+							comment.length ? (<div className="comment-input">
+								<textarea ref="input"></textarea>
+								<div className="btn-wrap">
+									{ this.state.id ? <span className="comment-text">回复 { this.state.to }</span> : '' }
+									<span className="button" onClick={ this.submitComment }>提交</span>
+									{ this.state.id ? <span className="button" onClick={ this.cancelComment }>取消回复</span> : '' }
+								</div>
+							</div>) : ''
+						}
+						<div className="comment-box">
+							{
+								comment.map((el, i) => {
+									return <Item key={ i } data={ el } comment={ this.changeComment }></Item>;
+								})
+							}
+						</div>
 					</div>
-				</div>
-				
-				<Footer></Footer>
+				}
+				{ isHide ? '' : <Footer></Footer> }
 			</div>
 		);
 	}
@@ -119,7 +123,6 @@ let Note = React.createClass({
 let Item = React.createClass({
 	render() {
 		let data = this.props.data;
-		console.log( data );
 		return (
 			<div>
 				<div className="img">

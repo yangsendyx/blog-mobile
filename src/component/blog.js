@@ -6,8 +6,11 @@ import option from '../option';
 import Footer from './footer';
 
 let Blog = React.createClass({
-	componentDidMount() {
+	componentWillMount() {
 		this.props.actions.blogInitData( [], [], 0 );
+	},
+
+	componentDidMount() {
 		let _this = this;
 		let url = '';
 		let data = {};
@@ -67,30 +70,33 @@ let Blog = React.createClass({
 		let filterClass = data.category.show ? 'filter-tag' : 'filter-tag hide';
 		let list = data.list.data;
 		let nextBtn = <div className="next-btn" onClick={ this.addMore }>加载更多</div>;
+		let isHide = data.list.length ? false : true;
 		
 		return (
 			<div className="sec sec-blog" style={ style } ref="wrap">
-				<div className="contains">
-					<div className={ filterClass } ref="filter">
-						{
-							tags.map((el, i) => {
-								return <Tag key={i} data={el} change={ this.changeFilter }></Tag>;
-							})
-						}
-						<div className="close" onClick={ this.closeFilter }>关闭</div>
-					</div>
-					<div className="blog-list">
-						{
-							list.map((el, i) => {
-								return <Article key={i} data={el}></Article>;
-							})
-						}
+				{
+					isHide ? '' : <div className="contains">
+						<div className={ filterClass } ref="filter">
+							{
+								tags.map((el, i) => {
+									return <Tag key={i} data={el} change={ this.changeFilter }></Tag>;
+								})
+							}
+							<div className="close" onClick={ this.closeFilter }>关闭</div>
+						</div>
+						<div className="blog-list">
+							{
+								list.map((el, i) => {
+									return <Article key={i} data={el}></Article>;
+								})
+							}
 
-						{ list.length == data.list.length ? '' : nextBtn }
+							{ list.length == data.list.length ? '' : nextBtn }
+						</div>
 					</div>
-				</div>
+				}
 				
-				<Footer></Footer>
+				{ isHide ? '' : <Footer></Footer> }
 			</div>
 		);
 	}

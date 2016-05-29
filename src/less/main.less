@@ -1,5 +1,5 @@
 
-/* mixin start */
+// mixin start
 .ellipsis() {
 	white-space: nowrap;
 	overflow: hidden;
@@ -10,7 +10,7 @@
 	display: block;
 	clear: both;
 }
-/* mixin end */
+// mixin end
 
 html {
 	min-height: 100%;
@@ -34,18 +34,18 @@ textarea {
 @animate-type: ease-in-out;
 @bgd-color: #eefaff;
 
-/* 过场动画 start */
+// 过场动画 start
 @keyframes leave {
-	0% { transform: scale(1) translate(0); /* opacity: 1; */}
-	30% { transform: scale(.8) translate(0); /* opacity: 1; */}
-	70% { transform: scale(.8) translate(100%); /* opacity: 0; */}
-	100% { transform: scale(1) translate(100%); /* opacity: 0; */}
+	0% { transform: scale(1) translate(0);}
+	30% { transform: scale(.8) translate(0);}
+	70% { transform: scale(.8) translate(100%);}
+	100% { transform: scale(1) translate(100%);}
 }
 @keyframes enter {
-	0% { transform: scale(1) translate(-100%); /* opacity: 0; */}
-	30% { transform: scale(.8) translate(-100%); /* opacity: 0; */}
-	70% { transform: scale(.8) translate(0); /* opacity: 1; */}
-	100% { transform: scale(1) translate(0); /* opacity: 1; */}
+	0% { transform: scale(1) translate(-100%);}
+	30% { transform: scale(.8) translate(-100%);}
+	70% { transform: scale(.8) translate(0);}
+	100% { transform: scale(1) translate(0);}
 }
 .example-enter {
 	transform: scale(.7) translate(-100%);
@@ -67,9 +67,9 @@ textarea {
 	color: #bbbbbb;
 	text-decoration: none;
 }
-/* 过场动画 end */
+// 过场动画 end
 
-/* 导航 start */
+// 导航 start
 .sec-nav {
 	@nav-h: 40px;
 	@color: #126a8e;
@@ -137,9 +137,9 @@ textarea {
 		}
 	}
 }
-/* 导航 end */
+// 导航 end
 
-/* page同一样式 start */
+// page同一样式 start
 .sec {
 	top: 0;
 	// padding: 60px 0 0;
@@ -157,15 +157,74 @@ textarea {
 		padding: 60px 20px 20px;
 	}
 }
-/* page 统一样式 end */
+// page 统一样式 end
 
-/* 入场 start */
-.sec-default {
-	background-color: #faf0ae;
+// 入场 start
+@keyframes welcome-enter {
+	0% { transform: translate(-100%);}
+	100% { transform: translate(0);}
 }
-/* 入场 end */
+@keyframes welcome_span {
+	30% { color: #fff; }
+}
+@keyframes welcome-lever {
+	0% { opacity: 1; }
+	99% { opacity: 0; }
+	100% { display: none; }
+}
+.sec-default {
+	background-color: #aeddfb;
+	position: fixed;
+	z-index: 12;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 1;
+	transition: opacity .4s;
+	&.hide {
+		opacity: 0;
+	}
+	&.real-hide {
+		display: none;
+	}
+	.welcome {
+		font-size: 50px;
+		letter-spacing: 10px;
+		font-weight: bold;
+		text-align: center;
+		line-height: 80px;
+		width: 100%;
+		position: fixed;
+		top: 50%;
+		margin-top: -40px;
+		z-index: 2;
+		i {
+			text-shadow: 0 2px 5px #666;
+			position: relative;
+			&:nth-of-type(1) { color: #f70000; }
+			&:nth-of-type(2) { color: #f79d00; }
+			&:nth-of-type(3) { color: #f4f700; }
+			&:nth-of-type(4) { color: #4cf700; }
+			&:nth-of-type(5) { color: #00eef7; }
+			&:nth-of-type(6) { color: #0057f7; }
+			&:nth-of-type(7) { color: #d100f7; }
+			&.welcome-span-0{ animation: welcome_span 1s linear .0s infinite; }
+			&.welcome-span-1{ animation: welcome_span 1s linear .1s infinite; }
+			&.welcome-span-2{ animation: welcome_span 1s linear .2s infinite; }
+			&.welcome-span-3{ animation: welcome_span 1s linear .3s infinite; }
+			&.welcome-span-4{ animation: welcome_span 1s linear .4s infinite; }
+			&.welcome-span-5{ animation: welcome_span 1s linear .5s infinite; }
+			&.welcome-span-6{ animation: welcome_span 1s linear .6s infinite; } 
+		}
+		&.move {
+			animation: welcome-enter .4s;
+		}
+	}
+}
+// 入场 end
 
-/* 博客 start */
+// 博客 start
 .sec-blog {
 	.filter-tag {
 		position: fixed;
@@ -255,9 +314,9 @@ textarea {
 		}
 	}
 }
-/* 博客 end */
+// 博客 end
 
-/* demo start */
+// demo start
 .sec-demo {
 	.box {
 		a {
@@ -295,7 +354,7 @@ textarea {
 		}
 	}
 }
-/* demo end */
+// demo end
 div.next-btn {
 	margin-top: 30px;
 	width: 80%;
@@ -310,7 +369,7 @@ div.next-btn {
 		background: #ddd;
 	}
 }
-/* msg start */
+// msg start
 .sec-msg {
 	.page-btn-wrap {
 		margin-top: 20px;
@@ -329,7 +388,9 @@ div.next-btn {
 		}
 	}
 }
-/* msg end */
+// msg end
+
+// share comment style start
 .comment-input {
 	margin-top: 20px;
 	padding: 0 10px;
@@ -475,8 +536,9 @@ div.next-btn {
 		}
 	}
 }
+// share comment style end
 
-/* aoout start */
+// aoout start
 .sec-about {
 	.img {
 		height: 150px;
@@ -591,9 +653,9 @@ div.next-btn {
 		}
 	}
 }
-/* about end */
+// about end
 
-/* note start */
+// note start
 .sec-note {
 	.article {
 		// padding: 30px 0;
@@ -640,8 +702,8 @@ div.next-btn {
 				margin: 10px 0;
 				line-height: 24px;
 				code {
-					/* position: relative;
-					top: 6px; */
+					// position: relative;
+					// top: 6px; 
 					padding: 0 6px;
 					background-color: rgba(220,220,220,.6);
 					color: #c42e05;
@@ -719,9 +781,9 @@ div.next-btn {
 		margin-top: 20px;
 	}
 }
-/* note end */
+// note end
 
-/* footer start */
+// footer start
 .footer {
 	background-color: #838485;
 	// position: absolute;
@@ -766,9 +828,9 @@ div.next-btn {
 		text-align: center;
 	}
 }
-/* footer end */
+// footer end
 
-/* loading start */
+// loading start
 @keyframes laoding {
 	0% { transform: rotate(0deg);}
 	100% { transform: rotate(360deg);}
@@ -824,9 +886,9 @@ div.next-btn {
 		}
 	}
 }
-/* loading end */
+// loading end
 
-/* error dialog start */
+// error dialog start
 .error {
 	width: 70%;
 	max-height: 50%;
@@ -835,7 +897,7 @@ div.next-btn {
 	left: 15%;
 
 	background: @bgd-color;
-	z-index: 11;
+	z-index: 12;
 
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
@@ -866,9 +928,9 @@ div.next-btn {
 		text-align: center;
 	}
 }
-/* error dialog end */
+// error dialog end
 
-/* info start */
+// info start
 @keyframes show-info {
 	0% { transform: translate();}
 	100% { transform: rotate(360deg);}
@@ -946,9 +1008,9 @@ div.next-btn {
 		}
 	}
 }
-/* info end */
+// info end
 
-/* dialog start */
+// dialog start
 .dialog {
 	width: 70%;
 	max-height: 50%;
@@ -957,7 +1019,7 @@ div.next-btn {
 	left: 15%;
 	box-sizing: border-box;
 	transition: opacity @animate-time;
-	z-index: 11;
+	z-index: 12;
 	opacity: 0;
 	box-shadow: 0 0 20px @shadow-color;
 	background-color: @bgd-color;
@@ -979,4 +1041,4 @@ div.next-btn {
 		text-align: center;
 	}
 }
-/* dialog end */
+// dialog end

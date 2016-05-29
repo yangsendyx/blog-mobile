@@ -28,6 +28,7 @@ export const action = {
 		SHOW_LOADING: 'UI_SHOW_LOADING',
 		SHOW_NAV: 'UI_SHOW_NAV',
 		SHOW_TAG: 'UI_SHOW_TAG',
+		SHOW_FIRST: 'UI_SHOW_FIRST',
 		CHANGE_BGD: 'UI_CHANGE_BGD'
 	}
 };
@@ -161,6 +162,13 @@ export function uiShowTag(state) {
 	return {
 		type: action.ui.SHOW_TAG,
 		showTag: state
+	};
+}
+
+export function uiShowFirst(state) {
+	return {
+		type: action.ui.SHOW_FIRST,
+		showFirst: state
 	};
 }
 

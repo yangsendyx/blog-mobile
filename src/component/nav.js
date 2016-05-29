@@ -34,11 +34,11 @@ let Nav = React.createClass({
 
 	render() {
 		let hash = window.location.hash;
-		let className = /blog/.test(hash) && this.props.length ? 'iconfont icon-tag' : 'iconfont icon-tag hidden';
 		let activeArr = ['' ,'', '', ''];
 		let hashCon = window.location.hash.split('#/')[1].split('?')[0];
-
-		if( !hashCon || hashCon == 'blog' || hashCon == 'note' ) {
+        let className = hashCon == 'blog' && this.props.length ? 'iconfont icon-tag' : 'iconfont icon-tag hidden';
+        
+		if( !hashCon || hashCon == 'blog' || /blog/.test(hashCon) ) {
 			activeArr[0] = 'active';
 		} else if( hashCon == 'demo' ) {
 			activeArr[1] = 'active';
