@@ -123,7 +123,7 @@ let Article = React.createClass({
 	    			<div className="body">{ this.props.data.desc }</div>
 	    			<div className="footer">
 	    				<div className="type">{ this.props.data.type }</div>
-	    				<div className="time">{ timeFormat(this.props.data.meta.createAt, 'YYYY-MM-DD HH:mm:ss') }</div>
+	    				<div className="time">{ timeFormat(this.props.data.meta.updateAt, 'YYYY-MM-DD HH:mm:ss') }</div>
 	    			</div>
 	    		</Link>
 	    	</div>
