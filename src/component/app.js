@@ -28,7 +28,7 @@ let App = React.createClass ({
 
 		setTimeout(() => {
 			this.state.actions.uiShowFirst( false );
-		}, 1500);
+		}, 2000);
 	},
 
   	render() {
