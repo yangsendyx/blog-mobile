@@ -94,16 +94,14 @@ let Note = React.createClass({
 								return <ArticleItem key={i} data={el}></ArticleItem>;
 							})
 						}
-						{ 
-							comment.length ? (<div className="comment-input">
-								<textarea ref="input"></textarea>
-								<div className="btn-wrap">
-									{ this.state.id ? <span className="comment-text">回复 { this.state.to }</span> : '' }
-									<span className="button" onClick={ this.submitComment }>提交</span>
-									{ this.state.id ? <span className="button" onClick={ this.cancelComment }>取消回复</span> : '' }
-								</div>
-							</div>) : ''
-						}
+						<div className="comment-input">
+							<textarea ref="input"></textarea>
+							<div className="btn-wrap">
+								{ this.state.id ? <span className="comment-text">回复 { this.state.to }</span> : '' }
+								<span className="button" onClick={ this.submitComment }>提交</span>
+								{ this.state.id ? <span className="button" onClick={ this.cancelComment }>取消回复</span> : '' }
+							</div>
+						</div>
 						<div className="comment-box">
 							{
 								comment.map((el, i) => {
