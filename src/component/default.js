@@ -25,7 +25,6 @@ let Default = React.createClass({
 		if( !this.props.ui.showFirst ) {
 			clearTimeout( this.state.timeoutFn );
 			this.state.timeoutFn = setTimeout(() => {
-				console.log('a');
 				_this.refs.wrap.className = 'sec-default real-hide';
 			}, 400);
 		}
