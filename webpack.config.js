@@ -54,8 +54,8 @@ module.exports = {
 	devServer: {
 		proxy: {
 		  	'*':{
-			    target: 'http://localhost',
-			    // target: 'http://yshome.net.cn',
+			    // target: 'http://localhost',
+			    target: 'http://yshome.net.cn',
 			    secure: false
 	 		}
 		},
@@ -65,6 +65,7 @@ module.exports = {
 		inline: true,
 		config: 'webpack.config.js'
 	},
+	devtool: 'source-map',
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 	    new webpack.optimize.CommonsChunkPlugin('vendor',  'vendor.js'),
