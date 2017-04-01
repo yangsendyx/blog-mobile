@@ -18,7 +18,7 @@ let Footer = React.createClass({
 				<div className="line"></div>
 				<div className="note">
 					<p className="footer-tagP">Design & Code by 秀气小猪 , Base on Node.js + MongoDB</p>
-					<p className="footer-tagP">粤ICP备14084840号   yshome.net.cn</p>
+					<p className="footer-tagP">粤ICP备14084840号   yshome.cc</p>
 				</div>
 			</div>
 		);

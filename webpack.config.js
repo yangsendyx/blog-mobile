@@ -25,6 +25,11 @@ module.exports = {
 				exclude: './node_modules/'
 			},
 			{
+				test: /\.scss$/,
+				loaders: ['style', 'css', 'autoprefixer?{browsers: ["last 2 version", "firefox 15", "> 1%"]}', 'sass'],
+				exclude: './node_modules/'
+			},
+			{
 				test: /\.jsx?$/,
 				loaders: ["react-hot", "babel?presets[]=es2015&presets[]=react&plugins[]=transform-runtime"],
 				exclude: "/node_modules/",
@@ -55,7 +60,6 @@ module.exports = {
 		proxy: {
 		  	'*':{
 			    target: 'http://localhost',
-			    // target: 'http://yshome.net.cn',
 			    secure: false
 	 		}
 		},
@@ -65,6 +69,7 @@ module.exports = {
 		inline: true,
 		config: 'webpack.config.js'
 	},
+	devtool: 'source-map',
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 	    new webpack.optimize.CommonsChunkPlugin('vendor',  'vendor.js'),
