@@ -24,6 +24,7 @@ const history = syncHistoryWithStore(hashHistory, store);
 });*/
 
 let div = document.createElement('div');
+div.className = 'wrap';
 document.body.appendChild( div );
 
 render(
